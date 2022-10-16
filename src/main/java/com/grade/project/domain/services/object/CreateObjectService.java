@@ -1,4 +1,4 @@
-package com.grade.project.domain.services.objects;
+package com.grade.project.domain.services.object;
 
 import com.grade.project.domain.dto.ObjectDto;
 import com.grade.project.domain.model.ObjectModel;

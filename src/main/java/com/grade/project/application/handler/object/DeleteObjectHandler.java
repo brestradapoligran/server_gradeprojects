@@ -1,6 +1,6 @@
 package com.grade.project.application.handler.object;
 
-import com.grade.project.domain.services.objects.DeleteObjectService;
+import com.grade.project.domain.services.object.DeleteObjectService;
 import org.springframework.stereotype.Component;
 
 @Component
