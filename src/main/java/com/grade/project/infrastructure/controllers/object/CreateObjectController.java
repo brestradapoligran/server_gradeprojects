@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/object/")
+@RequestMapping("/api/v1/object")
 public class CreateObjectController {
 
     private final CreateObjectHandler createObjectHandler;
@@ -18,7 +18,7 @@ public class CreateObjectController {
         this.createObjectHandler = createObjectHandler;
     }
 
-    @PostMapping("create")
+    @PostMapping
     public ObjectDto createObject(@RequestBody ObjectCommand objectCommand) {
         return this.createObjectHandler.createObjectHandler(objectCommand);
     }
