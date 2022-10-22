@@ -5,14 +5,32 @@ public class ObjectModel {
     private String name;
     private String description;
 
-    public ObjectModel(String id, String name, String description) {
+    private String status;
+
+    private ObjectTypeModel objectTypeModel;
+
+    public ObjectModel() {
+    }
+
+    public ObjectModel(String id, String name, String description, String status, ObjectTypeModel objectTypeModel) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.status = status;
+        this.objectTypeModel = objectTypeModel;
     }
-    public ObjectModel(String name, String description) {
+
+    public ObjectModel(String name, String description, String status, ObjectTypeModel objectTypeModel) {
         this.name = name;
         this.description = description;
+        this.status = status;
+        this.objectTypeModel = objectTypeModel;
+    }
+
+    public ObjectModel(String name, String description, String status) {
+        this.name = name;
+        this.description = description;
+        this.status = status;
     }
 
     public String getId() {
@@ -37,5 +55,13 @@ public class ObjectModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

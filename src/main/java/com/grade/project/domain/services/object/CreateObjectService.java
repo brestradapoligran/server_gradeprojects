@@ -6,7 +6,7 @@ import com.grade.project.domain.port.ObjectRepository;
 
 public class CreateObjectService {
 
-    private ObjectRepository objectRepository;
+    private final ObjectRepository objectRepository;
 
     public CreateObjectService(ObjectRepository objectRepository) {
         this.objectRepository = objectRepository;
