@@ -9,6 +9,10 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @AllArgsConstructor
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -18,29 +22,44 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public UserDto createUser(UserModel userModel) {
-        UserDocument userDocument = this.mapper.map(userModel, UserDocument.class);
-        userDocument.setId(null);
-        UserDocument userSaved = this.userMongoRepository.save(userDocument);
-        return this.mapper.map(userSaved, UserDto.class);
+        userModel.setId(null);
+        return this.saveUser(userModel);
     }
 
     @Override
     public UserDto updateUser(UserModel userModel) {
-        return null;
+        this.getUserById(userModel.getId());
+        return this.saveUser(userModel);
     }
 
     @Override
     public UserDto getUser(String id) {
-        return null;
+        return this.mapper.map(this.getUserById(id), UserDto.class);
     }
 
     @Override
-    public UserDto getUsers() {
-        return null;
+    public List<UserDto> getUsers() {
+        List<UserDocument> userDocuments = this.userMongoRepository.findAll();
+        return userDocuments.stream().map(user -> this.mapper.map(user, UserDto.class)).collect(Collectors.toList());
     }
 
     @Override
     public String disableUser(String id) {
         return null;
+    }
+
+    private UserDto saveUser(UserModel userModel) {
+        UserDocument userDocument = this.mapper.map(userModel, UserDocument.class);
+        UserDocument userSaved = this.userMongoRepository.save(userDocument);
+        return this.mapper.map(userSaved, UserDto.class);
+    }
+
+    private UserDocument getUserById(String id) {
+        Optional<UserDocument> userFound = this.userMongoRepository.findById(id);
+        if(userFound.isPresent()) {
+            return userFound.get();
+        } else {
+            throw new RuntimeException("");
+        }
     }
 }

@@ -3,6 +3,8 @@ package com.grade.project.domain.port;
 import com.grade.project.domain.dto.UserDto;
 import com.grade.project.domain.model.UserModel;
 
+import java.util.List;
+
 public interface UserRepository {
 
     UserDto createUser(UserModel userModel);
@@ -11,7 +13,7 @@ public interface UserRepository {
 
     UserDto getUser(String id);
 
-    UserDto getUsers();
+    List<UserDto> getUsers();
 
     String disableUser(String id);
 }
