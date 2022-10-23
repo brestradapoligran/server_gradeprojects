@@ -15,7 +15,6 @@ public class UpdateUserController {
 
     @PutMapping("/{id}")
     public UserDto updateUser(@RequestBody UserCommand userCommand, @PathVariable String id) {
-        userCommand.setId(id);
-        return this.updateUserHandler.updateUser(userCommand);
+        return this.updateUserHandler.updateUser(id, userCommand);
     }
 }

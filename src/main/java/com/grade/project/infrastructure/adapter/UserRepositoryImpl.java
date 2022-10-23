@@ -43,11 +43,6 @@ public class UserRepositoryImpl implements UserRepository {
         return userDocuments.stream().map(user -> this.mapper.map(user, UserDto.class)).collect(Collectors.toList());
     }
 
-    @Override
-    public String disableUser(String id) {
-        return null;
-    }
-
     private UserDto saveUser(UserModel userModel) {
         UserDocument userDocument = this.mapper.map(userModel, UserDocument.class);
         UserDocument userSaved = this.userMongoRepository.save(userDocument);

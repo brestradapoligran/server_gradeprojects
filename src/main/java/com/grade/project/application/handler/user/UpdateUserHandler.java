@@ -15,7 +15,7 @@ public class UpdateUserHandler {
         this.updateUserService = updateUserService;
     }
 
-    public UserDto updateUser(UserCommand userCommand) {
-        return this.updateUserService.updateUser(UserFactory.convertToModel(userCommand));
+    public UserDto updateUser(String id, UserCommand userCommand) {
+        return this.updateUserService.updateUser(UserFactory.convertToModel(id, userCommand));
     }
 }
