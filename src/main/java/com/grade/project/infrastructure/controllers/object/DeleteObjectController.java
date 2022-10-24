@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/object/")
+@RequestMapping("/api/v1/object")
 public class DeleteObjectController {
 
     private final DeleteObjectHandler deleteObjectHandler;
@@ -16,7 +16,7 @@ public class DeleteObjectController {
         this.deleteObjectHandler = deleteObjectHandler;
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteObject(@PathVariable String id) {
         this.deleteObjectHandler.run(id);
     }

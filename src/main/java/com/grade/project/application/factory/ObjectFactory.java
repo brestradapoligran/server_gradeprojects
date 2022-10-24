@@ -6,6 +6,10 @@ import com.grade.project.domain.model.ObjectModel;
 public class ObjectFactory {
 
     public static ObjectModel createObjectFactory(ObjectCommand objectCommand) {
-        return new ObjectModel(objectCommand.getName(), objectCommand.getDescription(), objectCommand.getStatus());
+        return new ObjectModel(null, objectCommand.getName(), objectCommand.getDescription(), objectCommand.getStatus());
+    }
+
+    public static ObjectModel createObjectFactory(String id, ObjectCommand objectCommand) {
+        return new ObjectModel(id, objectCommand.getName(), objectCommand.getDescription(), objectCommand.getStatus());
     }
 }

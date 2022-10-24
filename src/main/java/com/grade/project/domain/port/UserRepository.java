@@ -14,6 +14,4 @@ public interface UserRepository {
     UserDto getUser(String id);
 
     List<UserDto> getUsers();
-
-    String disableUser(String id);
 }
