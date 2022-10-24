@@ -34,7 +34,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public UserDto getUser(String id) {
-        return this.mapper.map(this.getUserById(id), UserDto.class);
+        return this.getUserById(id);
     }
 
     @Override
@@ -54,10 +54,10 @@ public class UserRepositoryImpl implements UserRepository {
         return this.mapper.map(userSaved, UserDto.class);
     }
 
-    private UserDocument getUserById(String id) {
+    private UserDto getUserById(String id) {
         Optional<UserDocument> userFound = this.userMongoRepository.findById(id);
         if(userFound.isPresent()) {
-            return userFound.get();
+            return this.mapper.map(userFound.get(), UserDto.class);
         } else {
             throw new RuntimeException("");
         }
