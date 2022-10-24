@@ -1,19 +1,12 @@
 package com.grade.project.domain.model;
 
-public class ObjectTypeModel {
+public class FeatureModel {
+
     private String id;
     private String name;
     private String description;
 
-    public ObjectTypeModel() {
-    }
-
-    public ObjectTypeModel(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public ObjectTypeModel(String id, String name, String description) {
+    public FeatureModel(String id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;

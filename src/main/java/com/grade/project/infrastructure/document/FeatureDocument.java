@@ -1,19 +1,20 @@
-package com.grade.project.domain.model;
+package com.grade.project.infrastructure.document;
 
-public class ObjectTypeModel {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "features")
+public class FeatureDocument {
+
+    @Id
     private String id;
     private String name;
     private String description;
 
-    public ObjectTypeModel() {
+    public FeatureDocument() {
     }
 
-    public ObjectTypeModel(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public ObjectTypeModel(String id, String name, String description) {
+    public FeatureDocument(String id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
