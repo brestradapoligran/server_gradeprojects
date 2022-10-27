@@ -1,5 +1,7 @@
 package com.grade.project.domain.model;
 
+import com.grade.project.domain.utils.validations.DataValidation;
+
 public class UserModel {
 
     private String id;
@@ -19,6 +21,7 @@ public class UserModel {
         this.email = email;
         this.pass = pass;
         this.role = role;
+        this.validateData();
     }
 
     public String getId() {
@@ -67,5 +70,13 @@ public class UserModel {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    private void validateData() {
+        DataValidation.validationRequired(this.name, "Error: El nombre es obligatorio");
+        DataValidation.validationRequired(this.lastName, "Error: El apellido es obligatorio");
+        DataValidation.validationRequired(this.email, "Error: El correo es obligatorio");
+        DataValidation.validationRequired(this.pass, "Error: La contraseña es obligatorio");
+        DataValidation.validationRequired(this.role, "Error: El rol es obligatorio");
     }
 }
