@@ -1,5 +1,7 @@
 package com.grade.project.domain.model;
 
+import com.grade.project.domain.utils.validations.DataValidation;
+
 public class FeatureModel {
 
     private String id;
@@ -10,6 +12,7 @@ public class FeatureModel {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.validateData();
     }
 
     public String getId() {
@@ -34,5 +37,9 @@ public class FeatureModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    private void validateData() {
+        DataValidation.validationRequired(this.name, "Error: El nombre es obligatorio");
     }
 }
