@@ -14,4 +14,6 @@ public interface ObjectRepository {
     ObjectDto getObject(String id);
 
     void deleteObject(String id);
+
+    List<ObjectDto> searchObject(String word);
 }
