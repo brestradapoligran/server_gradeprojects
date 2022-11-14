@@ -32,4 +32,9 @@ public class ObjectBean {
     public UpdateObjectService updateObjectService(ObjectRepository objectRepository) {
         return new UpdateObjectService(objectRepository);
     }
+
+    @Bean
+    public SearchObjectService searchObjectService(ObjectRepository objectRepository) {
+        return new SearchObjectService(objectRepository);
+    }
 }

@@ -53,6 +53,12 @@ public class ObjectRepositoryImpl implements ObjectRepository {
         this.objectMongoRepository.deleteById(id);
     }
 
+    @Override
+    public List<ObjectDto> searchObject(String word) {
+        List<ObjectDocument> objectDocuments = this.objectMongoRepository.findByNameIgnoreCase(word);
+        return objectDocuments.stream().map(object -> this.mapper.map(object, ObjectDto.class)).collect(Collectors.toList());
+    }
+
     private ObjectDto saveObject(ObjectModel objectModel) {
         ObjectDocument objectDocument = this.mapper.map(objectModel, ObjectDocument.class);
         ObjectDocument objectDocumentSaved = this.objectMongoRepository.save(objectDocument);
