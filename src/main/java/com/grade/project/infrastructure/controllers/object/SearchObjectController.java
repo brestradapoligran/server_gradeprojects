@@ -10,14 +10,14 @@ import java.util.List;
 @RequestMapping("/api/v1/object")
 public class SearchObjectController {
 
-    private SearchObjectHandler searchObjectHandler;
+    private final SearchObjectHandler searchObjectHandler;
 
     public SearchObjectController(SearchObjectHandler searchObjectHandler) {
         this.searchObjectHandler = searchObjectHandler;
     }
 
     @GetMapping("/search")
-    public List<ObjectDto> searchObject(@RequestParam String word) {
-        return this.searchObjectHandler.searchObject(word);
+    public List<ObjectDto> searchObject(@RequestHeader String q) {
+        return this.searchObjectHandler.searchObject(q);
     }
 }
