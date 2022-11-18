@@ -3,6 +3,7 @@ package com.grade.project.infrastructure.controllers.object;
 import com.grade.project.application.handler.object.GetAllObjectsHandler;
 import com.grade.project.domain.dto.ObjectDto;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
