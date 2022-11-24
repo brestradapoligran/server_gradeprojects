@@ -4,6 +4,7 @@ import com.grade.project.domain.dto.UserDto;
 import com.grade.project.domain.model.UserModel;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository {
 
