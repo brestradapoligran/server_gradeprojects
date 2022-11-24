@@ -1,10 +1,10 @@
 package com.grade.project.application.command;
 
 public class ObjectCommand {
-    private String name;
-    private String description;
+    private final String name;
+    private final String description;
 
-    private String status;
+    private final String status;
 
     private ObjectTypeCommand objectTypeCommand;
 

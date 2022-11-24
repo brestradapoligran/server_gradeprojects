@@ -1,19 +1,23 @@
-package com.grade.project.domain.dto;
+package com.grade.project.infrastructure.document;
 
-public class ObjectDto {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "features")
+public class FeatureDocument {
+
+    @Id
     private String id;
     private String name;
     private String description;
-    private String status;
 
-    public ObjectDto() {
+    public FeatureDocument() {
     }
 
-    public ObjectDto(String id, String name, String description, String status) {
+    public FeatureDocument(String id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.status = status;
     }
 
     public String getId() {
@@ -38,13 +42,5 @@ public class ObjectDto {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }

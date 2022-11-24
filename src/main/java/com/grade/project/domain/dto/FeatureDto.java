@@ -1,19 +1,18 @@
 package com.grade.project.domain.dto;
 
-public class ObjectDto {
+public class FeatureDto {
+
     private String id;
     private String name;
     private String description;
-    private String status;
 
-    public ObjectDto() {
+    public FeatureDto() {
     }
 
-    public ObjectDto(String id, String name, String description, String status) {
+    public FeatureDto(String id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.status = status;
     }
 
     public String getId() {
@@ -38,13 +37,5 @@ public class ObjectDto {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }

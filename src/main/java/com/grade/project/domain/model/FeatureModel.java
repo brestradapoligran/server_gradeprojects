@@ -1,19 +1,18 @@
-package com.grade.project.domain.dto;
+package com.grade.project.domain.model;
 
-public class ObjectDto {
+import com.grade.project.domain.utils.validations.DataValidation;
+
+public class FeatureModel {
+
     private String id;
     private String name;
     private String description;
-    private String status;
 
-    public ObjectDto() {
-    }
-
-    public ObjectDto(String id, String name, String description, String status) {
+    public FeatureModel(String id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.status = status;
+        this.validateData();
     }
 
     public String getId() {
@@ -40,11 +39,7 @@ public class ObjectDto {
         this.description = description;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    private void validateData() {
+        DataValidation.validationRequired(this.name, "Error: El nombre es obligatorio");
     }
 }
