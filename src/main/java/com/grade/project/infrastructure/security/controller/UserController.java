@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController
+@RestController("/api/v1")
 public class UserController {
 
     @PostMapping("/login")
