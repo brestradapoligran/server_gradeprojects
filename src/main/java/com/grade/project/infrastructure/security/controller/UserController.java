@@ -9,13 +9,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController("/api/v1")
+@RestController
+@RequestMapping("/api/v1")
 public class UserController {
 
     @PostMapping("/login")
