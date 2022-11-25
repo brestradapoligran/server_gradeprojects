@@ -2,11 +2,14 @@ package com.grade.project.application.command;
 
 public class UserCommand {
 
-    private final String name;
-    private final String lastName;
-    private final String email;
-    private final String pass;
-    private final String role;
+    private String name;
+    private String lastName;
+    private String email;
+    private String pass;
+    private String role;
+
+    public UserCommand() {
+    }
 
     public UserCommand(String name, String lastName, String email, String pass, String role) {
         this.name = name;

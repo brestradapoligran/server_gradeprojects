@@ -27,6 +27,7 @@ public class ProjectApplication {
 					.addFilterAfter(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 					.authorizeRequests()
 					.antMatchers(HttpMethod.POST, "/login").permitAll()
+					.antMatchers(HttpMethod.POST, "/api/v1/user").permitAll()
 					.anyRequest().authenticated();
 		}
 	}
