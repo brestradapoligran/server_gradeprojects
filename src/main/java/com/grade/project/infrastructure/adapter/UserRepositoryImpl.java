@@ -1,6 +1,8 @@
 package com.grade.project.infrastructure.adapter;
 
 import com.grade.project.domain.dto.UserDto;
+import com.grade.project.domain.exceptions.BadDataException;
+import com.grade.project.domain.model.LoginRequestModel;
 import com.grade.project.domain.model.UserModel;
 import com.grade.project.domain.port.UserRepository;
 import com.grade.project.infrastructure.document.UserDocument;
@@ -43,6 +45,12 @@ public class UserRepositoryImpl implements UserRepository {
         return userDocuments.stream().map(user -> this.mapper.map(user, UserDto.class)).collect(Collectors.toList());
     }
 
+    @Override
+    public UserDto login(LoginRequestModel loginRequestModel) {
+        Optional<UserDocument> userDocumentFound = this.userMongoRepository.findByEmailAndPass(loginRequestModel.getEmail(), loginRequestModel.getPass());
+        return this.validate(userDocumentFound);
+    }
+
     private UserDto saveUser(UserModel userModel) {
         UserDocument userDocument = this.mapper.map(userModel, UserDocument.class);
         UserDocument userSaved = this.userMongoRepository.save(userDocument);
@@ -51,10 +59,14 @@ public class UserRepositoryImpl implements UserRepository {
 
     private UserDto getUserById(String id) {
         Optional<UserDocument> userFound = this.userMongoRepository.findById(id);
+        return this.validate(userFound);
+    }
+
+    private UserDto validate(Optional<UserDocument> userFound) {
         if(userFound.isPresent()) {
             return this.mapper.map(userFound.get(), UserDto.class);
         } else {
-            throw new RuntimeException("");
+            throw new BadDataException("Error: User not found");
         }
     }
 }

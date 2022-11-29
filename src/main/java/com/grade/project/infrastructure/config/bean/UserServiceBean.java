@@ -1,10 +1,7 @@
 package com.grade.project.infrastructure.config.bean;
 
 import com.grade.project.domain.port.UserRepository;
-import com.grade.project.domain.services.user.CreateUserService;
-import com.grade.project.domain.services.user.GetUserService;
-import com.grade.project.domain.services.user.GetUsersService;
-import com.grade.project.domain.services.user.UpdateUserService;
+import com.grade.project.domain.services.user.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,5 +26,10 @@ public class UserServiceBean {
     @Bean
     public GetUsersService getUsersService(UserRepository userRepository) {
         return new GetUsersService(userRepository);
+    }
+
+    @Bean
+    public LoginService loginService(UserRepository userRepository) {
+        return new LoginService(userRepository);
     }
 }
