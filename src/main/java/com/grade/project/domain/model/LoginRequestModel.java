@@ -1,14 +1,11 @@
-package com.grade.project.infrastructure.security.payload.request;
+package com.grade.project.domain.model;
 
-public class JwtRequest {
+public class LoginRequestModel {
 
     private String email;
     private String pass;
 
-    public JwtRequest() {
-    }
-
-    public JwtRequest(String email, String pass) {
+    public LoginRequestModel(String email, String pass) {
         this.email = email;
         this.pass = pass;
     }

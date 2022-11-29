@@ -1,7 +1,9 @@
 package com.grade.project.infrastructure.security.controller;
 
-import com.grade.project.domain.model.UserModel;
-import com.grade.project.infrastructure.security.payload.request.JwtRequest;
+import com.grade.project.application.command.LoginRequestCommand;
+import com.grade.project.application.handler.user.LoginHandler;
+import com.grade.project.domain.dto.UserDto;
+import com.grade.project.domain.model.LoginRequestModel;
 import com.grade.project.infrastructure.security.payload.response.JwtResponse;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -20,9 +22,16 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1")
 public class UserController {
 
+    private final LoginHandler loginHandler;
+
+    public UserController(LoginHandler loginHandler) {
+        this.loginHandler = loginHandler;
+    }
+
     @PostMapping("/login")
-    public JwtResponse login(@RequestBody JwtRequest jwtRequest) {
-        String token = getJwtToken(jwtRequest.getEmail());
+    public JwtResponse login(@RequestBody LoginRequestCommand loginRequestCommand) {
+        UserDto userFound = this.loginHandler.login(loginRequestCommand);
+        String token = getJwtToken(userFound.getEmail());
         return new JwtResponse(token);
     }
 
