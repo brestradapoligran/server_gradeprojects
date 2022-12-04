@@ -18,4 +18,5 @@ public class UserDocument {
     private String email;
     private String pass;
     private String role;
+    private Boolean status;
 }

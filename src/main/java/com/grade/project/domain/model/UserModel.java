@@ -10,17 +10,19 @@ public class UserModel {
     private String email;
     private String pass;
     private String role;
+    private Boolean status;
 
     public UserModel() {
     }
 
-    public UserModel(String id, String name, String lastName, String email, String pass, String role) {
+    public UserModel(String id, String name, String lastName, String email, String pass, String role, Boolean status) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.pass = pass;
         this.role = role;
+        this.status = status;
         this.validateData();
     }
 
@@ -72,11 +74,18 @@ public class UserModel {
         this.role = role;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
     private void validateData() {
         DataValidation.validationRequired(this.name, "Error: El nombre es obligatorio");
         DataValidation.validationRequired(this.lastName, "Error: El apellido es obligatorio");
         DataValidation.validationRequired(this.email, "Error: El correo es obligatorio");
-        DataValidation.validationRequired(this.pass, "Error: La contraseña es obligatorio");
         DataValidation.validationRequired(this.role, "Error: El rol es obligatorio");
     }
 }

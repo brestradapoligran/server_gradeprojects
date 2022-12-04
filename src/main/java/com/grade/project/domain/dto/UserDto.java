@@ -7,16 +7,18 @@ public class UserDto {
     private String lastName;
     private String email;
     private String role;
+    private Boolean status;
 
     public UserDto() {
     }
 
-    public UserDto(String id, String name, String lastName, String email, String role) {
+    public UserDto(String id, String name, String lastName, String email, String role, Boolean status) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.role = role;
+        this.status = status;
     }
 
     public String getId() {
@@ -57,5 +59,13 @@ public class UserDto {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

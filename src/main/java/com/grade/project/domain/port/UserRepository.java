@@ -18,4 +18,5 @@ public interface UserRepository {
     List<UserDto> getUsers();
 
     UserDto login(LoginRequestModel loginRequestModel);
+    UserDto changeStatus(String id);
 }
