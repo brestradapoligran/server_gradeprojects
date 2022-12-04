@@ -51,6 +51,15 @@ public class UserRepositoryImpl implements UserRepository {
         return this.validate(userDocumentFound);
     }
 
+    @Override
+    public UserDto changeStatus(String id) {
+        Optional<UserDocument> userDocument = this.userMongoRepository.findById(id);
+        this.validateUserDocument(userDocument);
+        userDocument.get().setStatus(!userDocument.get().getStatus());
+        return this.mapper.map(this.userMongoRepository.save(userDocument.get()), UserDto.class);
+
+    }
+
     private UserDto saveUser(UserModel userModel) {
         UserDocument userDocument = this.mapper.map(userModel, UserDocument.class);
         UserDocument userSaved = this.userMongoRepository.save(userDocument);
@@ -62,9 +71,17 @@ public class UserRepositoryImpl implements UserRepository {
         return this.validate(userFound);
     }
 
+    private Optional<UserDocument> getUserDocumentById(String id) {
+        return this.userMongoRepository.findById(id);
+    }
+
     private UserDto validate(Optional<UserDocument> userFound) {
+        return this.mapper.map(this.validateUserDocument(userFound), UserDto.class);
+    }
+
+    private UserDocument validateUserDocument(Optional<UserDocument> userFound) {
         if(userFound.isPresent()) {
-            return this.mapper.map(userFound.get(), UserDto.class);
+            return userFound.get();
         } else {
             throw new BadDataException("Error: User not found");
         }

@@ -32,4 +32,9 @@ public class UserServiceBean {
     public LoginService loginService(UserRepository userRepository) {
         return new LoginService(userRepository);
     }
+
+    @Bean
+    public ChangeUserStatusService changeUserStatusService(UserRepository userRepository) {
+        return new ChangeUserStatusService(userRepository);
+    }
 }
