@@ -55,7 +55,12 @@ public class ObjectRepositoryImpl implements ObjectRepository {
 
     @Override
     public List<ObjectDto> searchObject(String word) {
-        List<ObjectDocument> objectDocuments = this.objectMongoRepository.findByNameIgnoreCase(word);
+        List<ObjectDocument> objectDocuments;
+        if(word.equals("")) {
+            objectDocuments = this.objectMongoRepository.findAll();
+        }else {
+            objectDocuments = this.objectMongoRepository.findByNameIgnoreCase(word);
+        }
         return objectDocuments.stream().map(object -> this.mapper.map(object, ObjectDto.class)).collect(Collectors.toList());
     }
 
