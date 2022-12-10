@@ -1,14 +1,16 @@
 package com.grade.project.application.command;
 
+import com.grade.project.domain.enums.ObjectTypeEnum;
+
 public class ObjectCommand {
-    private final String name;
-    private final String description;
+    private String name;
+    private String description;
+    private ObjectTypeEnum status;
 
-    private final String status;
+    public ObjectCommand() {
+    }
 
-    private ObjectTypeCommand objectTypeCommand;
-
-    public ObjectCommand(String name, String description, String status) {
+    public ObjectCommand(String name, String description, ObjectTypeEnum status) {
         this.name = name;
         this.description = description;
         this.status = status;
@@ -22,7 +24,7 @@ public class ObjectCommand {
         return description;
     }
 
-    public String getStatus() {
+    public ObjectTypeEnum getStatus() {
         return status;
     }
 }

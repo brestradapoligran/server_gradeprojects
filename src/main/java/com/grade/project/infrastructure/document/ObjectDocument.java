@@ -1,5 +1,6 @@
 package com.grade.project.infrastructure.document;
 
+import com.grade.project.domain.enums.ObjectTypeEnum;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,13 +10,12 @@ public class ObjectDocument {
     private String id;
     private String name;
     private String description;
-
-    private String status;
+    private ObjectTypeEnum status;
 
     public ObjectDocument() {
     }
 
-    public ObjectDocument(String id, String name, String description, String status) {
+    public ObjectDocument(String id, String name, String description, ObjectTypeEnum status) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -46,11 +46,11 @@ public class ObjectDocument {
         this.description = description;
     }
 
-    public String getStatus() {
+    public ObjectTypeEnum getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(ObjectTypeEnum status) {
         this.status = status;
     }
 }

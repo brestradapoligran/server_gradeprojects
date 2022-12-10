@@ -1,18 +1,18 @@
 package com.grade.project.domain.model;
 
+import com.grade.project.domain.enums.ObjectTypeEnum;
 import com.grade.project.domain.utils.validations.DataValidation;
 
 public class ObjectModel {
     private String id;
     private String name;
     private String description;
-    private String status;
-    private String objectType;
+    private ObjectTypeEnum status;
 
     public ObjectModel() {
     }
 
-    public ObjectModel(String id, String name, String description, String status) {
+    public ObjectModel(String id, String name, String description, ObjectTypeEnum status) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -44,11 +44,11 @@ public class ObjectModel {
         this.description = description;
     }
 
-    public String getStatus() {
+    public ObjectTypeEnum getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(ObjectTypeEnum status) {
         this.status = status;
     }
 
