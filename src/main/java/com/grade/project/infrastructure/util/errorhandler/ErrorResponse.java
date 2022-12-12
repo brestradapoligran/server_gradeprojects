@@ -1,4 +1,4 @@
-package com.grade.project.infrastructure.controllers.utils;
+package com.grade.project.infrastructure.util.errorhandler;
 
 import org.springframework.http.HttpStatus;
 

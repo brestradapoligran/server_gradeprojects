@@ -1,4 +1,4 @@
-package com.grade.project.infrastructure.security.payload.response;
+package com.grade.project.infrastructure.config.auth;
 
 public class JwtResponse {
     private String token;

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class UserServiceBean {
+public class UserBean {
 
     @Bean
     public CreateUserService createUserService(UserRepository userRepository) {
@@ -36,5 +36,16 @@ public class UserServiceBean {
     @Bean
     public ChangeUserStatusService changeUserStatusService(UserRepository userRepository) {
         return new ChangeUserStatusService(userRepository);
+    }
+
+    @Bean
+    public ForgotPasswordService forgotPasswordService(UserRepository userRepository) {
+        return new ForgotPasswordService(userRepository);
+    }
+
+
+    @Bean
+    public ResetPasswordService resetPasswordService(UserRepository userRepository) {
+        return new ResetPasswordService(userRepository);
     }
 }

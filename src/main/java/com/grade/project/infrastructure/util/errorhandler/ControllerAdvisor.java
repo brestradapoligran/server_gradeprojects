@@ -1,4 +1,4 @@
-package com.grade.project.infrastructure.controllers.utils;
+package com.grade.project.infrastructure.util.errorhandler;
 
 import com.grade.project.domain.exceptions.BadDataException;
 import org.springframework.http.HttpStatus;
