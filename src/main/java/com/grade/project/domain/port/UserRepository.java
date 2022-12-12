@@ -18,5 +18,10 @@ public interface UserRepository {
     List<UserDto> getUsers();
 
     UserDto login(LoginRequestModel loginRequestModel);
+
     UserDto changeStatus(String id);
+
+    void sendEmailForgotPassword(String email);
+
+    void resetPassword(String email, String pass);
 }

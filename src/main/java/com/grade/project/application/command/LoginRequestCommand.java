@@ -20,4 +20,8 @@ public class LoginRequestCommand {
     public String getPass() {
         return pass;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

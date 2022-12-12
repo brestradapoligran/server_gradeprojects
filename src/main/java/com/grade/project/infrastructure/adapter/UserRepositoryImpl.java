@@ -5,8 +5,11 @@ import com.grade.project.domain.exceptions.BadDataException;
 import com.grade.project.domain.model.LoginRequestModel;
 import com.grade.project.domain.model.UserModel;
 import com.grade.project.domain.port.UserRepository;
+import com.grade.project.infrastructure.config.email.EmailDetails;
+import com.grade.project.infrastructure.config.email.EmailService;
 import com.grade.project.infrastructure.document.UserDocument;
 import com.grade.project.infrastructure.mongorepository.UserMongoRepository;
+import com.grade.project.infrastructure.util.jwt.JwtUtils;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
@@ -20,7 +23,12 @@ import java.util.stream.Collectors;
 public class UserRepositoryImpl implements UserRepository {
 
     private final UserMongoRepository userMongoRepository;
+
     private final ModelMapper mapper = new ModelMapper();
+
+    private final EmailService emailService;
+
+    private final JwtUtils jwtUtils;
 
     @Override
     public UserDto createUser(UserModel userModel) {
@@ -58,6 +66,24 @@ public class UserRepositoryImpl implements UserRepository {
         userDocument.get().setStatus(!userDocument.get().getStatus());
         return this.mapper.map(this.userMongoRepository.save(userDocument.get()), UserDto.class);
 
+    }
+
+    @Override
+    public void sendEmailForgotPassword(String email) {
+        String token = jwtUtils.removeBearer(jwtUtils.getJwtToken(email));
+        EmailDetails emailDetails = new EmailDetails();
+        emailDetails.setRecipient(email);
+        emailDetails.setSubject("Recuperación Contraseña");
+        emailDetails.setMsgBody("Si desea actualizar su contraseña, ingrese aquí http://localhost:4200/resetpassword/" + token);
+        this.emailService.sendSimpleMail(emailDetails);
+    }
+
+    @Override
+    public void resetPassword(String email, String pass) {
+        Optional<UserDocument> userDocumentFound = this.userMongoRepository.findByEmail(email);
+        UserDocument userDocument = validateUserDocument(userDocumentFound);
+        userDocument.setPass(pass);
+        this.userMongoRepository.save(userDocument);
     }
 
     private UserDto saveUser(UserModel userModel) {

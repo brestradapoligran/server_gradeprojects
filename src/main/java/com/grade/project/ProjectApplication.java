@@ -1,6 +1,6 @@
 package com.grade.project;
 
-import com.grade.project.infrastructure.security.config.JwtAuthorizationFilter;
+import com.grade.project.infrastructure.config.auth.JwtAuthorizationFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
