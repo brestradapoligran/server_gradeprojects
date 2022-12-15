@@ -74,7 +74,7 @@ public class UserRepositoryImpl implements UserRepository {
         EmailDetails emailDetails = new EmailDetails();
         emailDetails.setRecipient(email);
         emailDetails.setSubject("Recuperación Contraseña");
-        emailDetails.setMsgBody("Si desea actualizar su contraseña, ingrese aquí http://localhost:4200/resetpassword/" + token);
+        emailDetails.setMsgBody("Si desea actualizar su contraseña, ingrese aquí http://localhost:4200/session/resetpassword/" + token);
         this.emailService.sendSimpleMail(emailDetails);
     }
 

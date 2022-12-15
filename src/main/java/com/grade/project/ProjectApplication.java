@@ -29,6 +29,7 @@ public class ProjectApplication {
 					.antMatchers(HttpMethod.POST, "/api/v1/login").permitAll()
 					.antMatchers(HttpMethod.POST, "/api/v1/user").permitAll()
 					.antMatchers(HttpMethod.POST, "/api/v1/objects").permitAll()
+					.antMatchers(HttpMethod.POST, "/api/v1/user/forgot").permitAll()
 					.anyRequest().authenticated();
 		}
 	}
