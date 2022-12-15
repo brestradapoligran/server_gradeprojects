@@ -7,7 +7,7 @@ import com.grade.project.domain.model.ObjectModel;
 public class ObjectFactory {
 
     public static ObjectModel createObjectFactory(ObjectCommand objectCommand) {
-        return new ObjectModel(null, objectCommand.getName(), objectCommand.getDescription(), ObjectTypeEnum.ENCONTRADO);
+        return new ObjectModel(null, objectCommand.getName(), objectCommand.getDescription(), ObjectTypeEnum.RECLAMADO);
     }
 
     public static ObjectModel createObjectFactory(String id, ObjectCommand objectCommand) {

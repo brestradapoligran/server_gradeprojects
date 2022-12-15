@@ -3,7 +3,6 @@ package com.grade.project.infrastructure.controllers.user;
 import com.grade.project.application.command.LoginRequestCommand;
 import com.grade.project.application.handler.user.ForgotPasswordHandler;
 import com.grade.project.infrastructure.config.email.EmailService;
-import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,8 +17,8 @@ public class ForgotPasswordController {
         this.forgotPasswordHandler = forgotPasswordHandler;
     }
 
-    @PostMapping("/forgot/{email}")
-    public void sendForgotPasswordEmail(@PathVariable String email) {
-        this.forgotPasswordHandler.sendForgotEmail(email);
+    @PostMapping("/forgot")
+    public void sendForgotPasswordEmail(@RequestBody LoginRequestCommand command) {
+        this.forgotPasswordHandler.sendForgotEmail(command.getEmail());
     }
 }

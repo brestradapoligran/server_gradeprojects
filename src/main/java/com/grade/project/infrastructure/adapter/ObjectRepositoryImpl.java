@@ -1,8 +1,10 @@
 package com.grade.project.infrastructure.adapter;
 
 import com.grade.project.domain.dto.ObjectDto;
+import com.grade.project.domain.dto.ObjectTypeDto;
 import com.grade.project.domain.dto.UserDto;
 import com.grade.project.domain.model.ObjectModel;
+import com.grade.project.domain.model.ObjectTypeModel;
 import com.grade.project.domain.model.UserModel;
 import com.grade.project.domain.port.ObjectRepository;
 import com.grade.project.infrastructure.document.ObjectDocument;
@@ -63,6 +65,7 @@ public class ObjectRepositoryImpl implements ObjectRepository {
         }
         return objectDocuments.stream().map(object -> this.mapper.map(object, ObjectDto.class)).collect(Collectors.toList());
     }
+
 
     private ObjectDto saveObject(ObjectModel objectModel) {
         ObjectDocument objectDocument = this.mapper.map(objectModel, ObjectDocument.class);
