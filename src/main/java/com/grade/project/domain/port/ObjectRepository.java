@@ -1,9 +1,11 @@
 package com.grade.project.domain.port;
 
+import com.grade.project.application.command.FiltersObjectCommand;
 import com.grade.project.domain.dto.ObjectDto;
 import com.grade.project.domain.model.ObjectModel;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ObjectRepository {
 
@@ -15,5 +17,5 @@ public interface ObjectRepository {
 
     void deleteObject(String id);
 
-    List<ObjectDto> searchObject(String word);
+    Set<ObjectDto> searchObject(FiltersObjectCommand filters);
 }

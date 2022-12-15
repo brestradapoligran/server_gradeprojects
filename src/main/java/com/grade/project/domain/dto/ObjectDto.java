@@ -1,19 +1,24 @@
 package com.grade.project.domain.dto;
 
+import com.grade.project.domain.enums.ObjectStatusEnum;
+import com.grade.project.domain.enums.ObjectTypeEnum;
+
 public class ObjectDto {
     private String id;
     private String name;
     private String description;
-    private String status;
+    private ObjectStatusEnum status;
+    private ObjectTypeEnum type;
 
     public ObjectDto() {
     }
 
-    public ObjectDto(String id, String name, String description, String status) {
+    public ObjectDto(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
+        this.type = type;
     }
 
     public String getId() {
@@ -40,11 +45,19 @@ public class ObjectDto {
         this.description = description;
     }
 
-    public String getStatus() {
+    public ObjectStatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(ObjectStatusEnum status) {
         this.status = status;
+    }
+
+    public ObjectTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(ObjectTypeEnum type) {
+        this.type = type;
     }
 }
