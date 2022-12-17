@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 
+import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -56,6 +57,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public UserDto login(LoginRequestModel loginRequestModel) {
         Optional<UserDocument> userDocumentFound = this.userMongoRepository.findByEmailAndPass(loginRequestModel.getEmail(), loginRequestModel.getPass());
+        this.validateIfUserIsInactive(userDocumentFound.get());
         return this.validate(userDocumentFound);
     }
 
@@ -122,5 +124,11 @@ public class UserRepositoryImpl implements UserRepository {
         emailDetails.setMsgBody("Se creó un usuario, con el nombre de usuario: " + email +
                 ", tiene 1 hora para acceder al siguiente link y actualizar su contraseña: http://localhost:4200/session/resetpassword/" + token);
         this.emailService.sendSimpleMail(emailDetails);
+    }
+
+    private void validateIfUserIsInactive(UserDocument user) {
+        if(user.getStatus() == false ) {
+            throw new BadDataException("Error: usuario y/o contraseña invalidos");
+        }
     }
 }
