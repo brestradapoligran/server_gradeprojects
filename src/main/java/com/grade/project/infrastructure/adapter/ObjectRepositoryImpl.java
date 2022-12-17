@@ -1,20 +1,15 @@
 package com.grade.project.infrastructure.adapter;
 
+import com.grade.project.application.command.FiltersObjectCommand;
 import com.grade.project.domain.dto.ObjectDto;
-import com.grade.project.domain.dto.ObjectTypeDto;
-import com.grade.project.domain.dto.UserDto;
 import com.grade.project.domain.model.ObjectModel;
-import com.grade.project.domain.model.ObjectTypeModel;
-import com.grade.project.domain.model.UserModel;
 import com.grade.project.domain.port.ObjectRepository;
 import com.grade.project.infrastructure.document.ObjectDocument;
-import com.grade.project.infrastructure.document.UserDocument;
 import com.grade.project.infrastructure.mongorepository.ObjectMongoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
@@ -56,14 +51,14 @@ public class ObjectRepositoryImpl implements ObjectRepository {
     }
 
     @Override
-    public List<ObjectDto> searchObject(String word) {
+    public Set<ObjectDto> searchObject(FiltersObjectCommand filters) {
         List<ObjectDocument> objectDocuments;
-        if(word.equals("")) {
+        if(filters.getObjectTypes().isEmpty() && filters.getSearchWord().isEmpty()) {
             objectDocuments = this.objectMongoRepository.findAll();
-        }else {
-            objectDocuments = this.objectMongoRepository.findByNameIgnoreCase(word);
+        } else {
+            objectDocuments = new ArrayList<>(this.objectMongoRepository.findByNameIgnoreCaseOrTypeIgnoreCaseIn(filters.getSearchWord(), filters.getObjectTypes()));
         }
-        return objectDocuments.stream().map(object -> this.mapper.map(object, ObjectDto.class)).collect(Collectors.toList());
+        return objectDocuments.stream().map(object -> this.mapper.map(object, ObjectDto.class)).collect(Collectors.toSet());
     }
 
 
