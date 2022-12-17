@@ -52,8 +52,12 @@ public class ObjectRepositoryImpl implements ObjectRepository {
 
     @Override
     public Set<ObjectDto> searchObject(FiltersObjectCommand filters) {
-        List<ObjectDocument> objectDocuments = new ArrayList<>();
-        objectDocuments.addAll(this.objectMongoRepository.findByNameIgnoreCaseOrTypeIgnoreCaseIn(filters.getSearchWord(), filters.getObjectTypes() ));
+        List<ObjectDocument> objectDocuments;
+        if(filters.getObjectTypes().isEmpty() && filters.getSearchWord().isEmpty()) {
+            objectDocuments = this.objectMongoRepository.findAll();
+        } else {
+            objectDocuments = new ArrayList<>(this.objectMongoRepository.findByNameIgnoreCaseOrTypeIgnoreCaseIn(filters.getSearchWord(), filters.getObjectTypes()));
+        }
         return objectDocuments.stream().map(object -> this.mapper.map(object, ObjectDto.class)).collect(Collectors.toSet());
     }
 
