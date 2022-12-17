@@ -89,6 +89,7 @@ public class UserRepositoryImpl implements UserRepository {
     private UserDto saveUser(UserModel userModel) {
         UserDocument userDocument = this.mapper.map(userModel, UserDocument.class);
         UserDocument userSaved = this.userMongoRepository.save(userDocument);
+        this.sendEmailWhenCreateUser(userSaved.getEmail());
         return this.mapper.map(userSaved, UserDto.class);
     }
 
@@ -111,5 +112,15 @@ public class UserRepositoryImpl implements UserRepository {
         } else {
             throw new BadDataException("Error: User not found");
         }
+    }
+
+    private void sendEmailWhenCreateUser(String email) {
+        String token = jwtUtils.removeBearer(jwtUtils.getJwtToken(email));
+        EmailDetails emailDetails = new EmailDetails();
+        emailDetails.setRecipient(email);
+        emailDetails.setSubject("Usuario Creado");
+        emailDetails.setMsgBody("Se creó un usuario, con el nombre de usuario: " + email +
+                ", tiene 1 hora para acceder al siguiente link y actualizar su contraseña: http://localhost:4200/session/resetpassword/" + token);
+        this.emailService.sendSimpleMail(emailDetails);
     }
 }
