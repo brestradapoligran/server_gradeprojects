@@ -89,6 +89,10 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     private UserDto saveUser(UserModel userModel) {
+        Optional<UserDocument> userDocumentFound = this.getUserByEmail(userModel.getEmail());
+        if(userDocumentFound.isPresent()) {
+            throw new BadDataException("Error: User with email "+ userModel.getEmail() + " already exists");
+        }
         UserDocument userDocument = this.mapper.map(userModel, UserDocument.class);
         UserDocument userSaved = this.userMongoRepository.save(userDocument);
         this.sendEmailWhenCreateUser(userSaved.getEmail());
@@ -130,5 +134,9 @@ public class UserRepositoryImpl implements UserRepository {
         if(user.getStatus() == false ) {
             throw new BadDataException("Error: usuario y/o contraseña invalidos");
         }
+    }
+
+    private Optional<UserDocument> getUserByEmail(String email) {
+        return this.userMongoRepository.findByEmail(email);
     }
 }

@@ -1,5 +1,6 @@
 package com.grade.project.infrastructure.document;
 
+import com.grade.project.domain.enums.user.UserRoleEnum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,6 @@ public class UserDocument {
     private String lastName;
     private String email;
     private String pass;
-    private String role;
+    private UserRoleEnum role;
     private Boolean status;
 }

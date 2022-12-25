@@ -1,7 +1,7 @@
 package com.grade.project.application.command;
 
-import com.grade.project.domain.enums.ObjectStatusEnum;
-import com.grade.project.domain.enums.ObjectTypeEnum;
+import com.grade.project.domain.enums.object.ObjectStatusEnum;
+import com.grade.project.domain.enums.object.ObjectTypeEnum;
 
 public class ObjectCommand {
     private String name;
