@@ -1,6 +1,7 @@
 package com.grade.project.infrastructure.mongorepository;
 
-import com.grade.project.domain.enums.ObjectTypeEnum;
+import com.grade.project.domain.enums.object.ObjectStatusEnum;
+import com.grade.project.domain.enums.object.ObjectTypeEnum;
 import com.grade.project.infrastructure.document.ObjectDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
@@ -12,5 +13,5 @@ public interface ObjectMongoRepository extends MongoRepository<ObjectDocument, S
 
     List<ObjectDocument> findByTypeIgnoreCaseIn(List<ObjectTypeEnum> type);
 
-    List<ObjectDocument> findByNameIgnoreCaseOrTypeIgnoreCaseIn(String name, List<ObjectTypeEnum> type);
+    List<ObjectDocument> findByNameIgnoreCaseOrTypeIgnoreCaseInOrStatusIgnoreCaseIn(String name, List<ObjectTypeEnum> type, List<ObjectStatusEnum> status);
 }

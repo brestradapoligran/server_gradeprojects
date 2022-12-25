@@ -1,6 +1,6 @@
 package com.grade.project.domain.model;
 
-import com.grade.project.domain.enums.ObjectTypeEnum;
+import com.grade.project.domain.enums.object.ObjectTypeEnum;
 
 import java.util.List;
 

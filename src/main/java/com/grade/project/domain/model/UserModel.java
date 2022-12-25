@@ -1,5 +1,6 @@
 package com.grade.project.domain.model;
 
+import com.grade.project.domain.enums.user.UserRoleEnum;
 import com.grade.project.domain.utils.validations.DataValidation;
 
 public class UserModel {
@@ -9,13 +10,13 @@ public class UserModel {
     private String lastName;
     private String email;
     private String pass;
-    private String role;
+    private UserRoleEnum role;
     private Boolean status;
 
     public UserModel() {
     }
 
-    public UserModel(String id, String name, String lastName, String email, String pass, String role, Boolean status) {
+    public UserModel(String id, String name, String lastName, String email, String pass, UserRoleEnum role, Boolean status) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -66,11 +67,11 @@ public class UserModel {
         this.pass = pass;
     }
 
-    public String getRole() {
+    public UserRoleEnum getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserRoleEnum role) {
         this.role = role;
     }
 

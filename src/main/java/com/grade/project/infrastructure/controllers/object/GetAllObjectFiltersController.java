@@ -1,6 +1,6 @@
 package com.grade.project.infrastructure.controllers.object;
 
-import com.grade.project.domain.enums.ObjectTypeEnum;
+import com.grade.project.domain.dto.FiltersDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class GetAllObjectFiltersController {
 
     @GetMapping("/filters")
-    private ObjectTypeEnum[] getFilters() {
-        return ObjectTypeEnum.values();
+    private FiltersDto getFilters() {
+        return new FiltersDto();
     }
 }

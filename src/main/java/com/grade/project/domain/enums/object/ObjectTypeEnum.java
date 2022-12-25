@@ -1,4 +1,4 @@
-package com.grade.project.domain.enums;
+package com.grade.project.domain.enums.object;
 
 public enum ObjectTypeEnum {
     Celular,

@@ -2,12 +2,8 @@ package com.grade.project.application.factory;
 
 import com.grade.project.application.command.FiltersObjectCommand;
 import com.grade.project.application.command.ObjectCommand;
-import com.grade.project.domain.enums.ObjectTypeEnum;
 import com.grade.project.domain.model.FiltersObjectModel;
 import com.grade.project.domain.model.ObjectModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ObjectFactory {
 

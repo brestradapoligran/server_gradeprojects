@@ -1,7 +1,7 @@
 package com.grade.project.domain.model;
 
-import com.grade.project.domain.enums.ObjectStatusEnum;
-import com.grade.project.domain.enums.ObjectTypeEnum;
+import com.grade.project.domain.enums.object.ObjectStatusEnum;
+import com.grade.project.domain.enums.object.ObjectTypeEnum;
 import com.grade.project.domain.utils.validations.DataValidation;
 
 public class ObjectModel {
