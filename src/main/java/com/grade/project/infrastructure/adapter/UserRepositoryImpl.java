@@ -58,6 +58,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public UserDto login(LoginRequestModel loginRequestModel) {
         Optional<UserDocument> userDocumentFound = this.userMongoRepository.findByEmailAndPass(loginRequestModel.getEmail(), loginRequestModel.getPass());
+        this.validateUserDocument(userDocumentFound);
         this.validateIfUserIsInactive(userDocumentFound.get());
         return this.validate(userDocumentFound);
     }
