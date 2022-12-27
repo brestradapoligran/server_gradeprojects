@@ -1,6 +1,7 @@
 package com.grade.project.application.command;
 
 import com.grade.project.domain.enums.user.UserRoleEnum;
+import com.grade.project.domain.enums.user.UserStatusEnum;
 
 public class UserCommand {
 
@@ -10,12 +11,12 @@ public class UserCommand {
     private String email;
     private String pass;
     private UserRoleEnum role;
-    private Boolean status;
+    private UserStatusEnum status;
 
     public UserCommand() {
     }
 
-    public UserCommand(String name, String lastName, String email, String pass, UserRoleEnum role, Boolean status) {
+    public UserCommand(String name, String lastName, String email, String pass, UserRoleEnum role, UserStatusEnum status) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -24,7 +25,7 @@ public class UserCommand {
         this.status = status;
     }
 
-    public UserCommand(String id, String name, String lastName, String email, String pass, UserRoleEnum role, Boolean status) {
+    public UserCommand(String id, String name, String lastName, String email, String pass, UserRoleEnum role, UserStatusEnum status) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -58,7 +59,7 @@ public class UserCommand {
         return role;
     }
 
-    public Boolean getStatus() {
+    public UserStatusEnum getStatus() {
         return status;
     }
 }

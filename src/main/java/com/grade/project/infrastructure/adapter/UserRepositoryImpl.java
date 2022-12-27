@@ -1,6 +1,7 @@
 package com.grade.project.infrastructure.adapter;
 
 import com.grade.project.domain.dto.UserDto;
+import com.grade.project.domain.enums.user.UserStatusEnum;
 import com.grade.project.domain.exceptions.BadDataException;
 import com.grade.project.domain.model.LoginRequestModel;
 import com.grade.project.domain.model.UserModel;
@@ -65,7 +66,7 @@ public class UserRepositoryImpl implements UserRepository {
     public UserDto changeStatus(String id) {
         Optional<UserDocument> userDocument = this.userMongoRepository.findById(id);
         this.validateUserDocument(userDocument);
-        userDocument.get().setStatus(!userDocument.get().getStatus());
+        userDocument.get().setStatus(userDocument.get().getStatus().equals(UserStatusEnum.Activo) ? UserStatusEnum.Inactivo: UserStatusEnum.Activo);
         return this.mapper.map(this.userMongoRepository.save(userDocument.get()), UserDto.class);
 
     }
@@ -90,7 +91,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     private UserDto saveUser(UserModel userModel) {
         Optional<UserDocument> userDocumentFound = this.getUserByEmail(userModel.getEmail());
-        if(userDocumentFound.isPresent()) {
+        if(userDocumentFound.isPresent() && userModel.getId() == null) {
             throw new BadDataException("Error: User with email "+ userModel.getEmail() + " already exists");
         }
         UserDocument userDocument = this.mapper.map(userModel, UserDocument.class);
@@ -131,7 +132,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     private void validateIfUserIsInactive(UserDocument user) {
-        if(user.getStatus() == false ) {
+        if(user.getStatus() == UserStatusEnum.Inactivo ) {
             throw new BadDataException("Error: usuario y/o contraseña invalidos");
         }
     }

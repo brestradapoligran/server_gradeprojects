@@ -1,6 +1,7 @@
 package com.grade.project.domain.dto;
 
 import com.grade.project.domain.enums.user.UserRoleEnum;
+import com.grade.project.domain.enums.user.UserStatusEnum;
 
 public class UserDto {
 
@@ -9,12 +10,12 @@ public class UserDto {
     private String lastName;
     private String email;
     private UserRoleEnum role;
-    private Boolean status;
+    private UserStatusEnum status;
 
     public UserDto() {
     }
 
-    public UserDto(String id, String name, String lastName, String email, UserRoleEnum role, Boolean status) {
+    public UserDto(String id, String name, String lastName, String email, UserRoleEnum role, UserStatusEnum status) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -63,11 +64,11 @@ public class UserDto {
         this.role = role;
     }
 
-    public Boolean getStatus() {
+    public UserStatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(UserStatusEnum status) {
         this.status = status;
     }
 }
