@@ -28,7 +28,8 @@ public class ProjectApplication {
 					.authorizeRequests()
 					.antMatchers(HttpMethod.POST, "/api/v1/login").permitAll()
 					.antMatchers(HttpMethod.POST, "/api/v1/user").permitAll()
-					.antMatchers(HttpMethod.POST, "/api/v1/objects").permitAll()
+					.antMatchers(HttpMethod.GET, "/api/v1/objects").permitAll()
+					.antMatchers(HttpMethod.GET, "/api/v1/object/filters").permitAll()
 					.antMatchers(HttpMethod.POST, "/api/v1/user/forgot").permitAll()
 					.anyRequest().authenticated();
 		}

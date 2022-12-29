@@ -1,6 +1,7 @@
 package com.grade.project.infrastructure.controllers.object;
 
 import com.grade.project.domain.dto.FiltersDto;
+import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
