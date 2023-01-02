@@ -1,33 +1,25 @@
 package com.grade.project.domain.dto;
 
+import com.grade.project.domain.enums.object.ObjectFeatureTypeEnum;
+
 public class FeatureDto {
 
-    private String id;
-    private String name;
+    private ObjectFeatureTypeEnum name;
     private String description;
 
     public FeatureDto() {
     }
 
-    public FeatureDto(String id, String name, String description) {
-        this.id = id;
+    public FeatureDto(ObjectFeatureTypeEnum name, String description) {
         this.name = name;
         this.description = description;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
+    public ObjectFeatureTypeEnum getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(ObjectFeatureTypeEnum name) {
         this.name = name;
     }
 

@@ -1,20 +1,25 @@
 package com.grade.project.application.command;
 
+import com.grade.project.domain.enums.object.ObjectFeatureTypeEnum;
+
 public class FeatureCommand {
 
-    private String name;
+    private ObjectFeatureTypeEnum name;
     private String description;
 
-    public FeatureCommand(String name, String description) {
+    public FeatureCommand() {
+    }
+
+    public FeatureCommand(ObjectFeatureTypeEnum name, String description) {
         this.name = name;
         this.description = description;
     }
 
-    public String getName() {
+    public ObjectFeatureTypeEnum getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(ObjectFeatureTypeEnum name) {
         this.name = name;
     }
 

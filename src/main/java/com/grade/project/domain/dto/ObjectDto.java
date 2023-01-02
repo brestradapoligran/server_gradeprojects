@@ -1,7 +1,12 @@
 package com.grade.project.domain.dto;
 
+import com.grade.project.domain.enums.object.ObjectFeatureTypeEnum;
 import com.grade.project.domain.enums.object.ObjectStatusEnum;
 import com.grade.project.domain.enums.object.ObjectTypeEnum;
+import com.grade.project.infrastructure.document.FeatureDocument;
+
+import java.util.List;
+import java.util.Map;
 
 public class ObjectDto {
     private String id;
@@ -9,16 +14,18 @@ public class ObjectDto {
     private String description;
     private ObjectStatusEnum status;
     private ObjectTypeEnum type;
+    private List<FeatureDto> features;
 
     public ObjectDto() {
     }
 
-    public ObjectDto(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type) {
+    public ObjectDto(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureDto> features) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
         this.type = type;
+        this.features = features;
     }
 
     public String getId() {
@@ -59,5 +66,13 @@ public class ObjectDto {
 
     public void setType(ObjectTypeEnum type) {
         this.type = type;
+    }
+
+    public List<FeatureDto> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<FeatureDto> features) {
+        this.features = features;
     }
 }

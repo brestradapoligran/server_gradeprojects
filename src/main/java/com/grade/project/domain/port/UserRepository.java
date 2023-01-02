@@ -15,6 +15,8 @@ public interface UserRepository {
 
     UserDto getUser(String id);
 
+    UserDto getMyUser(String email);
+
     List<UserDto> getUsers();
 
     UserDto login(LoginRequestModel loginRequestModel);
