@@ -14,4 +14,8 @@ public class GetUserService {
     public UserDto getUser(String id) {
         return this.userRepository.getUser(id);
     }
+
+    public UserDto getMyUser(String email) {
+        return this.userRepository.getMyUser(email);
+    }
 }

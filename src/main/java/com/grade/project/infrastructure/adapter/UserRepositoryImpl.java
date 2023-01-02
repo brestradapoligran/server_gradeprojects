@@ -15,7 +15,6 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 
-import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -47,6 +46,16 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public UserDto getUser(String id) {
         return this.getUserById(id);
+    }
+
+    @Override
+    public UserDto getMyUser(String email) {
+        Optional<UserDocument> userDocumentOptional = this.getUserByEmail(email);
+        if(!userDocumentOptional.isPresent()) {
+            throw new BadDataException("Error: User does not exist");
+        }
+        UserDocument userDocument = this.mapper.map(userDocumentOptional.get(), UserDocument.class);
+        return this.mapper.map(userDocument, UserDto.class);
     }
 
     @Override

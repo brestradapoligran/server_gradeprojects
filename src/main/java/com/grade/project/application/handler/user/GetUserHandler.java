@@ -16,4 +16,8 @@ public class GetUserHandler {
     public UserDto getUser(String id) {
         return this.getUserService.getUser(id);
     }
+
+    public UserDto getMyUser(String email) {
+        return this.getUserService.getMyUser(email);
+    }
 }

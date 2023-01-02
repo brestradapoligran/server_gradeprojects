@@ -1,8 +1,12 @@
 package com.grade.project.domain.model;
 
+import com.grade.project.domain.enums.object.ObjectFeatureTypeEnum;
 import com.grade.project.domain.enums.object.ObjectStatusEnum;
 import com.grade.project.domain.enums.object.ObjectTypeEnum;
 import com.grade.project.domain.utils.validations.DataValidation;
+
+import java.util.List;
+import java.util.Map;
 
 public class ObjectModel {
     private String id;
@@ -10,16 +14,18 @@ public class ObjectModel {
     private String description;
     private ObjectStatusEnum status;
     private ObjectTypeEnum type;
+    private List<FeatureModel> features;
 
     public ObjectModel() {
     }
 
-    public ObjectModel(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type) {
+    public ObjectModel(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureModel> features) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
         this.type = type;
+        this.features = features;
         this.dataValidation();
     }
 
@@ -61,6 +67,14 @@ public class ObjectModel {
 
     public void setType(ObjectTypeEnum type) {
         this.type = type;
+    }
+
+    public List<FeatureModel> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<FeatureModel> features) {
+        this.features = features;
     }
 
     private void dataValidation() {

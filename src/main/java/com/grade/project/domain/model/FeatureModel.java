@@ -1,33 +1,27 @@
 package com.grade.project.domain.model;
 
+import com.grade.project.domain.enums.object.ObjectFeatureTypeEnum;
 import com.grade.project.domain.utils.validations.DataValidation;
 
 public class FeatureModel {
 
-    private String id;
-    private String name;
+    private ObjectFeatureTypeEnum name;
     private String description;
 
-    public FeatureModel(String id, String name, String description) {
-        this.id = id;
+    public FeatureModel() {
+    }
+
+    public FeatureModel(ObjectFeatureTypeEnum name, String description) {
         this.name = name;
         this.description = description;
         this.validateData();
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
+    public ObjectFeatureTypeEnum getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(ObjectFeatureTypeEnum name) {
         this.name = name;
     }
 

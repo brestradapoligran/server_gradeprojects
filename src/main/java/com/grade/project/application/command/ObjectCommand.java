@@ -1,22 +1,28 @@
 package com.grade.project.application.command;
 
+import com.grade.project.domain.enums.object.ObjectFeatureTypeEnum;
 import com.grade.project.domain.enums.object.ObjectStatusEnum;
 import com.grade.project.domain.enums.object.ObjectTypeEnum;
+
+import java.util.List;
+import java.util.Map;
 
 public class ObjectCommand {
     private String name;
     private String description;
     private ObjectStatusEnum status;
     private ObjectTypeEnum type;
+    private List<FeatureCommand> features;
 
     public ObjectCommand() {
     }
 
-    public ObjectCommand(String name, String description, ObjectStatusEnum status, ObjectTypeEnum type) {
+    public ObjectCommand(String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureCommand> features) {
         this.name = name;
         this.description = description;
         this.status = status;
         this.type = type;
+        this.features = features;
     }
 
     public String getName() {
@@ -33,5 +39,9 @@ public class ObjectCommand {
 
     public ObjectTypeEnum getType() {
         return type;
+    }
+
+    public List<FeatureCommand> getFeatures() {
+        return features;
     }
 }
