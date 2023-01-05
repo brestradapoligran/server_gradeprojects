@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class GetAllObjectFiltersController {
 
     @GetMapping("/filters")
-    private FiltersDto getFilters() {
+    public FiltersDto getFilters() {
         return new FiltersDto();
     }
 }

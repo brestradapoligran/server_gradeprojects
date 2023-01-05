@@ -13,5 +13,7 @@ public interface ObjectMongoRepository extends MongoRepository<ObjectDocument, S
 
     List<ObjectDocument> findByTypeIgnoreCaseIn(List<ObjectTypeEnum> type);
 
+    ObjectDocument save(ObjectDocument objectDocument);
+
     List<ObjectDocument> findByNameIgnoreCaseOrTypeIgnoreCaseInOrStatusIgnoreCaseIn(String name, List<ObjectTypeEnum> type, List<ObjectStatusEnum> status);
 }
