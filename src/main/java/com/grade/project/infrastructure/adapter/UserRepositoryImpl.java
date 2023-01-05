@@ -39,7 +39,9 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public UserDto updateUser(UserModel userModel) {
-        this.getUserById(userModel.getId());
+        Optional<UserDocument> userDocument = this.getOptionalUserById(userModel.getId());
+        this.validate(userDocument);
+        userModel.setPass(userDocument.get().getPass());
         return this.saveUser(userModel);
     }
 
@@ -149,5 +151,9 @@ public class UserRepositoryImpl implements UserRepository {
 
     private Optional<UserDocument> getUserByEmail(String email) {
         return this.userMongoRepository.findByEmail(email);
+    }
+
+    private Optional<UserDocument> getOptionalUserById(String id) {
+        return this.userMongoRepository.findById(id);
     }
 }

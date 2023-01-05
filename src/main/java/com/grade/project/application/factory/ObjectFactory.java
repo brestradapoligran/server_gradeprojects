@@ -21,7 +21,4 @@ public class ObjectFactory {
         return new ObjectModel(id, objectCommand.getName(), objectCommand.getDescription(), objectCommand.getStatus(), objectCommand.getType(), featureModels);
     }
 
-    public static FiltersObjectModel filtersObjectFactory(FiltersObjectCommand filtersCommand) {
-        return new FiltersObjectModel(filtersCommand.getSearchWord(), filtersCommand.getObjectTypes());
-    }
 }
