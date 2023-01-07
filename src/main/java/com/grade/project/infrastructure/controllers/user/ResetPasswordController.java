@@ -1,6 +1,7 @@
 package com.grade.project.infrastructure.controllers.user;
 
 import com.grade.project.application.command.LoginRequestCommand;
+import com.grade.project.application.command.ResetPasswordCommand;
 import com.grade.project.application.handler.user.ResetPasswordHandler;
 import com.grade.project.infrastructure.util.jwt.JwtUtils;
 import lombok.AllArgsConstructor;
@@ -20,5 +21,13 @@ public class ResetPasswordController {
         String email = this.jwtUtils.getEmailFromToken(token);
         loginRequestCommand.setEmail(email);
         this.resetPasswordHandler.resetPassword(loginRequestCommand);
+    }
+
+    @PostMapping("/updatepassword")
+    public void updatepassword(@RequestBody ResetPasswordCommand passwordCommand,
+                              @RequestHeader(value="Authorization") String token) {
+        String email = this.jwtUtils.getEmailFromToken(token);
+        passwordCommand.setEmail(email);
+        this.resetPasswordHandler.updatePassword(passwordCommand);
     }
 }

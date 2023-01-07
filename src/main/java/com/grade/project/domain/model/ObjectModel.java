@@ -15,18 +15,19 @@ public class ObjectModel {
     private ObjectStatusEnum status;
     private ObjectTypeEnum type;
     private List<FeatureModel> features;
+    private ClaimerModel claimer;
 
     public ObjectModel() {
     }
 
-    public ObjectModel(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureModel> features) {
+    public ObjectModel(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureModel> features, ClaimerModel claimer) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
         this.type = type;
         this.features = features;
-        this.dataValidation();
+        this.claimer = claimer;
     }
 
     public String getId() {
@@ -75,6 +76,14 @@ public class ObjectModel {
 
     public void setFeatures(List<FeatureModel> features) {
         this.features = features;
+    }
+
+    public ClaimerModel getClaimer() {
+        return claimer;
+    }
+
+    public void setClaimer(ClaimerModel claimer) {
+        this.claimer = claimer;
     }
 
     private void dataValidation() {

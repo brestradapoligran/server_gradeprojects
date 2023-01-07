@@ -4,6 +4,7 @@ import com.grade.project.domain.dto.UserDto;
 import com.grade.project.domain.enums.user.UserStatusEnum;
 import com.grade.project.domain.exceptions.BadDataException;
 import com.grade.project.domain.model.LoginRequestModel;
+import com.grade.project.domain.model.ResetPasswordModel;
 import com.grade.project.domain.model.UserModel;
 import com.grade.project.domain.port.UserRepository;
 import com.grade.project.infrastructure.config.email.EmailDetails;
@@ -15,6 +16,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 
+import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -98,6 +100,18 @@ public class UserRepositoryImpl implements UserRepository {
         Optional<UserDocument> userDocumentFound = this.userMongoRepository.findByEmail(email);
         UserDocument userDocument = validateUserDocument(userDocumentFound);
         userDocument.setPass(pass);
+        this.userMongoRepository.save(userDocument);
+    }
+
+    @Override
+    public void updatePassword(ResetPasswordModel resetPasswordModel) {
+        Optional<UserDocument> userDocumentFound = this.userMongoRepository.findByEmail(resetPasswordModel.getEmail());
+        UserDocument userDocument = validateUserDocument(userDocumentFound);
+        if(userDocument.getPass().equals(resetPasswordModel.getOldPass())) {
+            userDocument.setPass(resetPasswordModel.getPass());
+        }else {
+            throw new BadDataException("Error: Contraseña antigua es incorrecta");
+        }
         this.userMongoRepository.save(userDocument);
     }
 
