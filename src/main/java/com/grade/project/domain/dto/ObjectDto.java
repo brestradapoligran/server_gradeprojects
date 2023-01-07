@@ -3,6 +3,7 @@ package com.grade.project.domain.dto;
 import com.grade.project.domain.enums.object.ObjectFeatureTypeEnum;
 import com.grade.project.domain.enums.object.ObjectStatusEnum;
 import com.grade.project.domain.enums.object.ObjectTypeEnum;
+import com.grade.project.domain.model.ClaimerModel;
 import com.grade.project.infrastructure.document.FeatureDocument;
 
 import java.util.List;
@@ -15,17 +16,19 @@ public class ObjectDto {
     private ObjectStatusEnum status;
     private ObjectTypeEnum type;
     private List<FeatureDto> features;
+    private ClaimerModel claimer;
 
     public ObjectDto() {
     }
 
-    public ObjectDto(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureDto> features) {
+    public ObjectDto(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureDto> features, ClaimerModel claimerModel) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
         this.type = type;
         this.features = features;
+        this.claimer = claimerModel;
     }
 
     public String getId() {
@@ -74,5 +77,13 @@ public class ObjectDto {
 
     public void setFeatures(List<FeatureDto> features) {
         this.features = features;
+    }
+
+    public ClaimerModel getClaimer() {
+        return claimer;
+    }
+
+    public void setClaimer(ClaimerModel claimer) {
+        this.claimer = claimer;
     }
 }

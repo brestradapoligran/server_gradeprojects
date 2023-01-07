@@ -19,17 +19,19 @@ public class ObjectDocument {
     private ObjectStatusEnum status;
     private ObjectTypeEnum type;
     private List<FeatureDocument> features;
+    private ClaimerDocument claimer;
 
     public ObjectDocument() {
     }
 
-    public ObjectDocument(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureDocument> features) {
+    public ObjectDocument(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureDocument> features, ClaimerDocument claimer) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
         this.type = type;
         this.features = features;
+        this.claimer = claimer;
     }
 
     public String getId() {
@@ -78,5 +80,13 @@ public class ObjectDocument {
 
     public void setFeatures(List<FeatureDocument> features) {
         this.features = features;
+    }
+
+    public ClaimerDocument getClaimer() {
+        return claimer;
+    }
+
+    public void setClaimer(ClaimerDocument claimer) {
+        this.claimer = claimer;
     }
 }

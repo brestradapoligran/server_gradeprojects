@@ -2,8 +2,10 @@ package com.grade.project.infrastructure.adapter;
 
 import com.grade.project.application.command.FiltersObjectCommand;
 import com.grade.project.domain.dto.ObjectDto;
+import com.grade.project.domain.enums.object.ObjectStatusEnum;
 import com.grade.project.domain.model.ObjectModel;
 import com.grade.project.domain.port.ObjectRepository;
+import com.grade.project.infrastructure.document.ClaimerDocument;
 import com.grade.project.infrastructure.document.ObjectDocument;
 import com.grade.project.infrastructure.mongorepository.ObjectMongoRepository;
 import org.modelmapper.ModelMapper;
@@ -64,6 +66,7 @@ public class ObjectRepositoryImpl implements ObjectRepository {
 
     private ObjectDto saveObject(ObjectModel objectModel) {
         ObjectDocument objectDocument = this.mapper.map(objectModel, ObjectDocument.class);
+        this.validateStatus(objectDocument);
         ObjectDocument objectDocumentSaved = this.objectMongoRepository.save(objectDocument);
         return this.mapper.map(objectDocumentSaved, ObjectDto.class);
     }
@@ -74,6 +77,12 @@ public class ObjectRepositoryImpl implements ObjectRepository {
             return objectFound.get();
         } else {
             throw new RuntimeException("");
+        }
+    }
+
+    private void validateStatus(ObjectDocument objectDocument) {
+        if(objectDocument.getStatus().equals(ObjectStatusEnum.PERDIDO)) {
+            objectDocument.setClaimer(new ClaimerDocument());
         }
     }
 }

@@ -2,6 +2,7 @@ package com.grade.project.domain.port;
 
 import com.grade.project.domain.dto.UserDto;
 import com.grade.project.domain.model.LoginRequestModel;
+import com.grade.project.domain.model.ResetPasswordModel;
 import com.grade.project.domain.model.UserModel;
 
 import java.util.List;
@@ -26,4 +27,6 @@ public interface UserRepository {
     void sendEmailForgotPassword(String email);
 
     void resetPassword(String email, String pass);
+
+    void updatePassword(ResetPasswordModel resetPasswordModel);
 }

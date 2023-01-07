@@ -13,16 +13,18 @@ public class ObjectCommand {
     private ObjectStatusEnum status;
     private ObjectTypeEnum type;
     private List<FeatureCommand> features;
+    private ClaimerCommand claimer;
 
     public ObjectCommand() {
     }
 
-    public ObjectCommand(String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureCommand> features) {
+    public ObjectCommand(String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureCommand> features, ClaimerCommand claimer) {
         this.name = name;
         this.description = description;
         this.status = status;
         this.type = type;
         this.features = features;
+        this.claimer = claimer;
     }
 
     public String getName() {
@@ -43,5 +45,9 @@ public class ObjectCommand {
 
     public List<FeatureCommand> getFeatures() {
         return features;
+    }
+
+    public ClaimerCommand getClaimer() {
+        return claimer;
     }
 }
