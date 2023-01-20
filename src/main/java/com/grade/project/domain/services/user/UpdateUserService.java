@@ -15,4 +15,8 @@ public class UpdateUserService {
     public UserDto updateUser(UserModel userModel) {
         return this.userRepository.updateUser(userModel);
     }
+
+    public UserDto updateMyUser(String email, UserModel userModel) {
+        return this.userRepository.updateMyUser(email, userModel);
+    }
 }

@@ -38,7 +38,7 @@ public class ObjectRepositoryImpl implements ObjectRepository {
 
     @Override
     public List<ObjectDto> getObjects() {
-        List<ObjectDocument> objectDocuments = this.objectMongoRepository.findAll();
+        List<ObjectDocument> objectDocuments = this.objectMongoRepository.findAllByOrderByIdDesc();
         return objectDocuments.stream().map(object -> this.mapper.map(object, ObjectDto.class)).collect(Collectors.toList());
     }
 

@@ -16,7 +16,7 @@ public class ObjectCommandTest {
 
     @Test
     public void createObjectCommandWithConstructor() {
-        ObjectCommand objectCommand = new ObjectCommand("Name", "Description", ObjectStatusEnum.PERDIDO, ObjectTypeEnum.Celular, new ArrayList<>());
+        ObjectCommand objectCommand = new ObjectCommand("Name", "Description", ObjectStatusEnum.PERDIDO, ObjectTypeEnum.Celular, new ArrayList<>(), new ClaimerCommand());
         Assert.assertEquals("Name", objectCommand.getName());
         Assert.assertEquals("Description", objectCommand.getDescription());
         Assert.assertEquals(ObjectStatusEnum.PERDIDO, objectCommand.getStatus());
