@@ -22,8 +22,8 @@ public class LoginUserController {
     @PostMapping("/login")
     public JwtResponse login(@RequestBody LoginRequestCommand loginRequestCommand) {
         UserDto userFound = this.loginHandler.login(loginRequestCommand);
-        String token = this.jwtUtils.getJwtToken(userFound.getEmail());
-        return new JwtResponse(token);
+        String token = this.jwtUtils.getJwtToken(userFound.getEmail(), userFound.getRole());
+        return new JwtResponse(token, userFound.getEmail(), userFound.getRole());
     }
 
 

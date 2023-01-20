@@ -1,5 +1,6 @@
 package com.grade.project.infrastructure.util.jwt;
 
+import com.grade.project.domain.enums.user.UserRoleEnum;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,9 +22,10 @@ public class JwtUtils {
     public JwtUtils() {
     }
 
-    public String getJwtToken(String email) {
+    public String getJwtToken(String email, UserRoleEnum role) {
         String secretKey = "mySecretKey";
-        List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN");
+        List<GrantedAuthority> grantedAuthorities =
+                AuthorityUtils.commaSeparatedStringToAuthorityList(role.name());
 
         String token = Jwts.builder()
                 .setId("gradeproject")

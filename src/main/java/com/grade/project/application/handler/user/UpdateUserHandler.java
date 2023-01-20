@@ -18,4 +18,8 @@ public class UpdateUserHandler {
     public UserDto updateUser(String id, UserCommand userCommand) {
         return this.updateUserService.updateUser(UserFactory.convertToModel(id, userCommand));
     }
+
+    public UserDto updateMyUser(String email, UserCommand userCommand) {
+        return this.updateUserService.updateMyUser(email, UserFactory.convertToModel(userCommand));
+    }
 }

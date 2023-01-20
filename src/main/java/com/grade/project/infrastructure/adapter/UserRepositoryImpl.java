@@ -87,7 +87,9 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void sendEmailForgotPassword(String email) {
-        String token = jwtUtils.removeBearer(jwtUtils.getJwtToken(email));
+        Optional<UserDocument> user = this.getUserByEmail(email);
+        this.validateUserDocument(user);
+        String token = jwtUtils.removeBearer(jwtUtils.getJwtToken(email, user.get().getRole()));
         EmailDetails emailDetails = new EmailDetails();
         emailDetails.setRecipient(email);
         emailDetails.setSubject("Recuperación Contraseña");
@@ -115,6 +117,15 @@ public class UserRepositoryImpl implements UserRepository {
         this.userMongoRepository.save(userDocument);
     }
 
+    @Override
+    public UserDto updateMyUser(String email, UserModel userModel) {
+        Optional<UserDocument> userDocument = this.getOptionalUserByEmail(email);
+        UserDocument userFound = this.validateUserDocument(userDocument);
+        userModel.setId(userFound.getId());
+        userModel.setPass(userFound.getPass());
+        return this.saveUser(userModel);
+    }
+
     private UserDto saveUser(UserModel userModel) {
         Optional<UserDocument> userDocumentFound = this.getUserByEmail(userModel.getEmail());
         if(userDocumentFound.isPresent() && userModel.getId() == null) {
@@ -131,10 +142,6 @@ public class UserRepositoryImpl implements UserRepository {
         return this.validate(userFound);
     }
 
-    private Optional<UserDocument> getUserDocumentById(String id) {
-        return this.userMongoRepository.findById(id);
-    }
-
     private UserDto validate(Optional<UserDocument> userFound) {
         return this.mapper.map(this.validateUserDocument(userFound), UserDto.class);
     }
@@ -148,7 +155,9 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     private void sendEmailWhenCreateUser(String email) {
-        String token = jwtUtils.removeBearer(jwtUtils.getJwtToken(email));
+        Optional<UserDocument> userDocument = this.getOptionalUserByEmail(email);
+        this.validateUserDocument(userDocument);
+        String token = jwtUtils.removeBearer(jwtUtils.getJwtToken(email, userDocument.get().getRole()));
         EmailDetails emailDetails = new EmailDetails();
         emailDetails.setRecipient(email);
         emailDetails.setSubject("Usuario Creado");
@@ -169,5 +178,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     private Optional<UserDocument> getOptionalUserById(String id) {
         return this.userMongoRepository.findById(id);
+    }
+    private Optional<UserDocument> getOptionalUserByEmail(String email) {
+        return this.userMongoRepository.findByEmail(email);
     }
 }

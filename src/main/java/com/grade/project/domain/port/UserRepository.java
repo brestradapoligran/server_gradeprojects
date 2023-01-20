@@ -29,4 +29,6 @@ public interface UserRepository {
     void resetPassword(String email, String pass);
 
     void updatePassword(ResetPasswordModel resetPasswordModel);
+
+    UserDto updateMyUser(String email, UserModel userModel);
 }
