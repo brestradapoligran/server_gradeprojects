@@ -10,17 +10,19 @@ public class ClaimerModel {
     private String contact;
     private DocumentTypeEnum documentType;
     private UserTypeEnum userType;
+    private String foundDate;
 
     public ClaimerModel() {
     }
 
-    public ClaimerModel(String name, String lastName, String document, String contact, DocumentTypeEnum documentType, UserTypeEnum userType) {
+    public ClaimerModel(String name, String lastName, String document, String contact, DocumentTypeEnum documentType, UserTypeEnum userType, String foundDate) {
         this.name = name;
         this.lastName = lastName;
         this.document = document;
         this.contact = contact;
         this.documentType = documentType;
         this.userType = userType;
+        this.foundDate = foundDate;
     }
 
     public String getName() {
@@ -69,5 +71,13 @@ public class ClaimerModel {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getFoundDate() {
+        return foundDate;
+    }
+
+    public void setFoundDate(String foundDate) {
+        this.foundDate = foundDate;
     }
 }

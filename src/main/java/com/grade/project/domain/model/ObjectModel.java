@@ -5,6 +5,7 @@ import com.grade.project.domain.enums.object.ObjectStatusEnum;
 import com.grade.project.domain.enums.object.ObjectTypeEnum;
 import com.grade.project.domain.utils.validations.DataValidation;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,11 +17,12 @@ public class ObjectModel {
     private ObjectTypeEnum type;
     private List<FeatureModel> features;
     private ClaimerModel claimer;
+    private String lostDate;
 
     public ObjectModel() {
     }
 
-    public ObjectModel(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureModel> features, ClaimerModel claimer) {
+    public ObjectModel(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureModel> features, ClaimerModel claimer, String lostDate) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -28,6 +30,15 @@ public class ObjectModel {
         this.type = type;
         this.features = features;
         this.claimer = claimer;
+        this.lostDate = lostDate;
+    }
+
+    public String getLostDate() {
+        return lostDate;
+    }
+
+    public void setLostDate(String lostDate) {
+        this.lostDate = lostDate;
     }
 
     public String getId() {

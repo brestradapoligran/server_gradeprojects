@@ -126,6 +126,11 @@ public class UserRepositoryImpl implements UserRepository {
         return this.saveUser(userModel);
     }
 
+    @Override
+    public void deleteUser(String id) {
+        this.userMongoRepository.deleteById(id);
+    }
+
     private UserDto saveUser(UserModel userModel) {
         Optional<UserDocument> userDocumentFound = this.getUserByEmail(userModel.getEmail());
         if(userDocumentFound.isPresent() && userModel.getId() == null) {
