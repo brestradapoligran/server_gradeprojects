@@ -21,7 +21,7 @@ public class ObjectFactory {
         claimerModel.setDocument(objectCommand.getClaimer().getDocument());
         claimerModel.setUserType(objectCommand.getClaimer().getUserType());
         claimerModel.setDocumentType(objectCommand.getClaimer().getDocumentType());
-        return new ObjectModel(null, objectCommand.getName(), objectCommand.getDescription(), objectCommand.getStatus(), objectCommand.getType(), featureModels, claimerModel);
+        return new ObjectModel(null, objectCommand.getName(), objectCommand.getDescription(), objectCommand.getStatus(), objectCommand.getType(), featureModels, claimerModel, objectCommand.getLostDate());
     }
 
     public static ObjectModel createObjectFactory(String id, ObjectCommand objectCommand) {
@@ -33,7 +33,8 @@ public class ObjectFactory {
         claimerModel.setDocument(objectCommand.getClaimer().getDocument());
         claimerModel.setUserType(objectCommand.getClaimer().getUserType());
         claimerModel.setDocumentType(objectCommand.getClaimer().getDocumentType());
-        return new ObjectModel(id, objectCommand.getName(), objectCommand.getDescription(), objectCommand.getStatus(), objectCommand.getType(), featureModels, claimerModel);
+        claimerModel.setFoundDate(objectCommand.getClaimer().getFoundDate());
+        return new ObjectModel(id, objectCommand.getName(), objectCommand.getDescription(), objectCommand.getStatus(), objectCommand.getType(), featureModels, claimerModel, objectCommand.getLostDate());
     }
 
 }

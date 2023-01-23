@@ -17,7 +17,7 @@ public class SearchObjectHandler {
         this.searchObjectService = searchObjectService;
     }
 
-    public Set<ObjectDto> searchObject(FiltersObjectCommand filters) {
+    public List<ObjectDto> searchObject(FiltersObjectCommand filters) {
         return this.searchObjectService.searchObject(filters);
     }
 }

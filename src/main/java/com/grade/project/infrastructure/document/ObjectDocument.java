@@ -7,6 +7,7 @@ import com.grade.project.domain.enums.object.ObjectTypeEnum;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,11 +21,12 @@ public class ObjectDocument {
     private ObjectTypeEnum type;
     private List<FeatureDocument> features;
     private ClaimerDocument claimer;
+    private String lostDate;
 
     public ObjectDocument() {
     }
 
-    public ObjectDocument(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureDocument> features, ClaimerDocument claimer) {
+    public ObjectDocument(String id, String name, String description, ObjectStatusEnum status, ObjectTypeEnum type, List<FeatureDocument> features, ClaimerDocument claimer, String lostDate) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -32,6 +34,7 @@ public class ObjectDocument {
         this.type = type;
         this.features = features;
         this.claimer = claimer;
+        this.lostDate = lostDate;
     }
 
     public String getId() {
@@ -88,5 +91,13 @@ public class ObjectDocument {
 
     public void setClaimer(ClaimerDocument claimer) {
         this.claimer = claimer;
+    }
+
+    public String getLostDate() {
+        return lostDate;
+    }
+
+    public void setLostDate(String lostDate) {
+        this.lostDate = lostDate;
     }
 }

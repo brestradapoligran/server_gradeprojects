@@ -15,7 +15,7 @@ public class SearchObjectService {
         this.objectRepository = objectRepository;
     }
 
-    public Set<ObjectDto> searchObject(FiltersObjectCommand filters) {
+    public List<ObjectDto> searchObject(FiltersObjectCommand filters) {
         return this.objectRepository.searchObject(filters);
     }
 }

@@ -31,4 +31,6 @@ public interface UserRepository {
     void updatePassword(ResetPasswordModel resetPasswordModel);
 
     UserDto updateMyUser(String email, UserModel userModel);
+
+    void deleteUser(String id);
 }

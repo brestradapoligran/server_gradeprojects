@@ -19,7 +19,7 @@ public class SearchObjectController {
     }
 
     @PostMapping("/search")
-    public Set<ObjectDto> searchObject(@RequestBody FiltersObjectCommand filters) {
+    public List<ObjectDto> searchObject(@RequestBody FiltersObjectCommand filters) {
         return this.searchObjectHandler.searchObject(filters);
     }
 }

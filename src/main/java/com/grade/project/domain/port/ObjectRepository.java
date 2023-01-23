@@ -17,5 +17,5 @@ public interface ObjectRepository {
 
     void deleteObject(String id);
 
-    Set<ObjectDto> searchObject(FiltersObjectCommand filters);
+    List<ObjectDto> searchObject(FiltersObjectCommand filters);
 }

@@ -43,9 +43,13 @@ public class UserBean {
         return new ForgotPasswordService(userRepository);
     }
 
-
     @Bean
     public ResetPasswordService resetPasswordService(UserRepository userRepository) {
         return new ResetPasswordService(userRepository);
+    }
+
+    @Bean
+    public DeleteUserService deleteUserService(UserRepository userRepository) {
+        return new DeleteUserService(userRepository);
     }
 }
