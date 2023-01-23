@@ -47,10 +47,10 @@ public class SearchObjectControllerTest {
 
     @Test
     public void creationSuccess() {
-        Set<ObjectDto> dtoSet = new HashSet<>();
+        List<ObjectDto> dtoSet = new ArrayList<>();
         dtoSet.add(this.getObjectDto());
         when(searchObjectService.searchObject(any(FiltersObjectCommand.class))).thenReturn(dtoSet);
-        Set<ObjectDto> objectDtos = this.searchObjectController.searchObject(new FiltersObjectCommand());
+        List<ObjectDto> objectDtos = this.searchObjectController.searchObject(new FiltersObjectCommand());
         Assert.assertEquals(objectDtos.stream().findFirst().get().getId(), "1");
     }
 
