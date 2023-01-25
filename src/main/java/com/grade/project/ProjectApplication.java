@@ -31,6 +31,7 @@ public class ProjectApplication {
 					.antMatchers(HttpMethod.GET, "/api/v1/objects").permitAll()
 					.antMatchers(HttpMethod.GET, "/api/v1/object/filters").permitAll()
 					.antMatchers(HttpMethod.POST, "/api/v1/user/forgot").permitAll()
+					.antMatchers(HttpMethod.POST, "/api/v1/object/search").permitAll()
 					.anyRequest().authenticated();
 		}
 	}
