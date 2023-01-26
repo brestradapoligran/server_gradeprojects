@@ -15,6 +15,11 @@ public interface ObjectMongoRepository extends MongoRepository<ObjectDocument, S
 
     ObjectDocument save(ObjectDocument objectDocument);
 
+    List<ObjectDocument> findByNameIgnoreCaseAndTypeIgnoreCaseInAndStatusIgnoreCaseInOrderByIdDesc(String name, List<ObjectTypeEnum> type, List<ObjectStatusEnum> status);
+    List<ObjectDocument> findByTypeIgnoreCaseInAndStatusIgnoreCaseInOrderByIdDesc(List<ObjectTypeEnum> type, List<ObjectStatusEnum> status);
+    List<ObjectDocument> findByNameIgnoreCaseAndStatusIgnoreCaseInOrderByIdDesc(String name, List<ObjectStatusEnum> status);
+    List<ObjectDocument> findByNameIgnoreCaseAndTypeIgnoreCaseInOrderByIdDesc(String name, List<ObjectTypeEnum> type);
+
     List<ObjectDocument> findByNameIgnoreCaseOrTypeIgnoreCaseInOrStatusIgnoreCaseInOrderByIdDesc(String name, List<ObjectTypeEnum> type, List<ObjectStatusEnum> status);
 
     List<ObjectDocument> findAllByOrderByIdDesc();

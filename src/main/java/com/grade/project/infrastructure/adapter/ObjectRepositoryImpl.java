@@ -55,10 +55,22 @@ public class ObjectRepositoryImpl implements ObjectRepository {
     @Override
     public List<ObjectDto> searchObject(FiltersObjectCommand filters) {
         List<ObjectDocument> objectDocuments;
-        if(filters.getObjectTypes().isEmpty() && filters.getSearchWord().isEmpty() && filters.getObjectStatuses().isEmpty()) {
-            objectDocuments = this.objectMongoRepository.findAllByOrderByIdDesc();
-        } else {
+        if (!filters.getSearchWord().isEmpty() && !filters.getObjectTypes().isEmpty() && !filters.getObjectStatuses().isEmpty()){
+            objectDocuments = new ArrayList<>(this.objectMongoRepository.findByNameIgnoreCaseAndTypeIgnoreCaseInAndStatusIgnoreCaseInOrderByIdDesc(filters.getSearchWord(), filters.getObjectTypes(), filters.getObjectStatuses()));
+        } else if (!filters.getObjectTypes().isEmpty() && !filters.getObjectStatuses().isEmpty()) {
+            objectDocuments = new ArrayList<>(this.objectMongoRepository.findByTypeIgnoreCaseInAndStatusIgnoreCaseInOrderByIdDesc(filters.getObjectTypes(), filters.getObjectStatuses()));
+
+        } else if (!filters.getSearchWord().isEmpty() && !filters.getObjectStatuses().isEmpty()) {
+            objectDocuments = new ArrayList<>(this.objectMongoRepository.findByNameIgnoreCaseAndStatusIgnoreCaseInOrderByIdDesc(filters.getSearchWord(), filters.getObjectStatuses()));
+
+        } else if (!filters.getSearchWord().isEmpty() && !filters.getObjectTypes().isEmpty()) {
+            objectDocuments = new ArrayList<>(this.objectMongoRepository.findByNameIgnoreCaseAndTypeIgnoreCaseInOrderByIdDesc(filters.getSearchWord(), filters.getObjectTypes()));
+
+        } else if (!filters.getSearchWord().isEmpty() || !filters.getObjectTypes().isEmpty() || !filters.getObjectStatuses().isEmpty()) {
             objectDocuments = new ArrayList<>(this.objectMongoRepository.findByNameIgnoreCaseOrTypeIgnoreCaseInOrStatusIgnoreCaseInOrderByIdDesc(filters.getSearchWord(), filters.getObjectTypes(), filters.getObjectStatuses()));
+
+        }else{
+            objectDocuments = this.objectMongoRepository.findAllByOrderByIdDesc();
         }
         return objectDocuments.stream().map(object -> this.mapper.map(object, ObjectDto.class)).collect(Collectors.toList());
     }
